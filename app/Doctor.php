@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Doctor extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
       'rut', 'name', 'date_of_hire', 'specialty', 'price'
     ];
+
+    public function atentions()
+    {
+        return $this->hasMany(Attention::class);
+    }
 }
