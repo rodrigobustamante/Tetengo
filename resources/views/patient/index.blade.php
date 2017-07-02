@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-9 col-md-offset-1">
     <table class="table">
       <tr>
         <th>Rut</th>
@@ -13,8 +13,8 @@
         <th>Correo Electrónico</th>
         <th>Acciones</th>
       </tr>
-      <tr>
       @foreach($patients as $patient)
+      <tr>
         <td>{{ $patient->rut }}</td>
         <td>{{ $patient->name }}</td>
         <td>{{ $patient->birthdate }}</td>
@@ -26,8 +26,8 @@
           <a class="btn btn-primary" href="{{ route('patients.show', $patient->id) }}">Ver</a>|
           <a class="btn btn-danger" href="{{ route('patients.destroy', $patient->id) }}">Eliminar</a>
         </td>
-      @endforeach
       </tr>
+      @endforeach
     </table>
   </div>
 @endsection()
