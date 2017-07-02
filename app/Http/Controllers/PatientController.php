@@ -12,74 +12,53 @@ class PatientController extends Controller
     {
         $patients = Patient::all();
         
-        return view('patient.index')->with('patients' => $patients);
+        return view('patient.index')->with(['patients' => $patients]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $users = User::pluck('email', 'id');
 
-        return view('patient.create')->with('users' => $users);
+        return view('patient.create')->with(['users' => $users]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $patient = new Patient();
+
+        $patient->rut       = $request->rut;
+        $patient->name      = $request->name;
+        $patient->birthdate = $request->birthdate;
+        $patient->gender    = $request->gender;
+        $patient->address   = $request->address;
+        $patient->phone     = $request->phone;
+        $patient->user_id   = $request->user_id;
+
+        $patient->save();
+
+        return redirect()->route('patients.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Patient $patient)
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Patient $patient)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Patient $patient)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Patient  $patient
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Patient $patient)
+    public function destroy($id)
     {
-        //
+        $patient = Patient::find($id);
+        $patient->delete();
+
+        return redirect()->route('patients.index');
     }
 }
