@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Attention;
+use App\Doctor;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class AttentionController extends Controller
@@ -14,7 +16,8 @@ class AttentionController extends Controller
      */
     public function index()
     {
-        //
+        $attentions = Attention::all();
+        return view('attention.index')->with(['attentions' => $attentions]);
     }
 
     /**

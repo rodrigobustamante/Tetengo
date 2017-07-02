@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $patients = Patient::all();
+        
+        return view('patient.index')->with('patients' => $patients);
     }
 
     /**
@@ -24,7 +22,9 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::pluck('email', 'id');
+
+        return view('patient.create')->with('users' => $users);
     }
 
     /**
