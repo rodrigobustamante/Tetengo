@@ -23,3 +23,5 @@ Route::resource('doctors', 'DoctorController',['except' => 'destroy, edit, updat
 Route::get('/doctors/{doctors}/delete', 'DoctorController@destroy')->name('doctors.destroy');
 Route::resource('patients', 'PatientController',['except' => 'destroy, edit, update']);
 Route::get('/patients/{patients}/delete', 'PatientController@destroy')->name('patients.destroy');
+Route::resource('attentions', 'AttentionController',['except' => 'destroy, edit, update']);
+Route::get('/attentions/{attentions}/delete', 'PatientController@destroy')->name('attentions.destroy');
