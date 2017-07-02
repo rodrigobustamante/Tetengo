@@ -16,7 +16,7 @@ class DoctorController extends Controller
 
     public function create()
     {
-        return view('doctors.create');
+        return view('doctor.create');
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class DoctorController extends Controller
         $doctor->price         = $request->price;
         $doctor->save();
 
-        return redirect()->route('doctor.index');
+        return redirect()->route('doctors.index');
     }
 
     public function show($id)
