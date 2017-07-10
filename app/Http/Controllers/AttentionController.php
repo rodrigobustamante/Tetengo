@@ -7,14 +7,21 @@ use App\Doctor;
 use App\Patient;
 use App\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttentionController extends Controller
 {
     public function index()
     {
-        $attentions = Attention::all();
+        if(Auth::guest()){
+            return view('login');
+        }
+        if(Auth::user()->user_type_id != 4){
+            $attentions = Attention::all();
         
-        return view('attention.index')->with(['attentions' => $attentions]);
+            return view('attention.index')->with(['attentions' => $attentions]);
+        }
+        return view('home');
     }
 
     public function create()
